@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<template name="number_sptotal">
+		<number_dropadd>
+			<font>reference-b-large</font>
+			<description textres="char_tooltip_sptotal" />
+		</number_dropadd>
+	</template>
+	<template name="number_spwnd">
+		<basicnumber>
+			<font>reference-b-large</font>
+			<description textres="char_tooltip_spwnd" />
+		</basicnumber>
+	</template>
+</root>

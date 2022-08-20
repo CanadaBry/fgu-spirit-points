@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+	Fantasy Grounds is Copyright � 2004-2021 SmiteWorks USA LLC.
+-->
+
+<root version="1.0" logo="logo.png">
+	<properties>
+		<name>Spirit Points</name>
+		<version>1.0</version>
+		<author>CanadaBry</author>
+		<description>Implements Homebrew Mechanic: Spirit Points</description>
+		<ruleset>
+			<name>5E</name>
+		</ruleset>		
+	</properties>
+
+	<base>
+		<!-- Extension loading script - writes info to chat window -->
+		<script name="SpiritPoints" file="scripts/SpiritPoints.lua" />
+
+		<!-- XML file containing new strings -->
+		<includefile source="xml/SP_Strings.xml" />
+		
+		<!-- XML file containing new images -->
+		<includefile source="xml/SP_Images.xml" />
+		
+		<!-- Add new curhp template -->
+		<includefile source="campaign/template_char.xml" />
+		
+		<!-- Join Character Main Sheet -->
+		<includefile source="campaign/record_char_main.xml" />
+	
+		<!-- Join Character Sheet -->
+		<includefile source="campaign/record_char.xml" />
+
+		<includefile source="campaign/record_npc.xml" />
+
+		<includefile source="ct/template_ct.xml" />
+
+		<includefile source="ct/ct_client.xml" />
+
+		<includefile source="ct/ct_host.xml" />
+		
+	</base>
+</root>

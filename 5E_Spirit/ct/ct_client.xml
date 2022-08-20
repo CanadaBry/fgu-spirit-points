@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<root>
+    <windowclass name="combattracker_client" merge="join">
+        <script>
+			function onInit()
+				super.onInit();
+				OptionsManager.registerCallback("SHPC", updateSpiritDisplay);
+				OptionsManager.registerCallback("SHNPC", updateSpiritDisplay);
+				updateSpiritDisplay();
+			end
+			
+			function onClose()
+				super.onClose();
+				OptionsManager.unregisterCallback("SHPC", updateSpiritDisplay);
+				OptionsManager.unregisterCallback("SHNPC", updateSpiritDisplay);
+			end
+			
+			function updateSpiritDisplay()
+				local sOptSHPC = OptionsManager.getOption("SHPC");
+				local sOptSHNPC = OptionsManager.getOption("SHNPC");
+				local bShowDetail = (sOptSHPC == "detailed") or (sOptSHNPC == "detailed");
+				
+				label_sp.setVisible(bShowDetail);
+				label_spwnd.setVisible(bShowDetail);
+
+                label_hp.setVisible(bShowDetail);
+				label_temp.setVisible(bShowDetail);
+				label_wounds.setVisible(bShowDetail);
+
+				label_status.setVisible(not bShowDetail);
+
+				for _,w in pairs(list.getWindows()) do
+					w.updateSpiritDisplay();
+				end
+			end
+		</script>
+        <sheetdata>
+            <label_ct_right name="label_spwnd" insertbefore="label_init">
+				<static textres="char_label_spwnd" />
+				<tooltip textres="char_tooltip_spwnd" />
+			</label_ct_right>
+			<label_ct_right name="label_sp" insertbefore="label_init">
+				<static textres="char_label_sptotal" />
+				<tooltip textres="char_tooltip_sptotal" />
+			</label_ct_right>
+        </sheetdata>
+    </windowclass>
+    <windowclass name="client_ct_entry" merge="join">
+		<script file="ct/scripts/clientct_entry.lua" />
+        <sheetdata>
+            <base_clientct_health name="healthbase">
+			    <anchored to="rightanchor" width="190" height="20">
+                    <top />
+                    <right />
+                </anchored>
+            </base_clientct_health>
+            <number_clientct_spwnd name="spwnd" insertbefore="initresult"/>
+            <number_clientct_sptotal name="sptotal" insertbefore="initresult"/>
+        </sheetdata>
+    </windowclass>
+</root>

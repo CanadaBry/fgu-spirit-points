@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="charsheet_main" merge="join">
+		<script>
+			function getPCSheetSpiritColor(nodePC)
+				local nHP = 0;
+				local nWounds = 0;
+				if nodePC then
+					nHP = math.max(DB.getValue(nodePC, "sp.total", 0), 0);
+					nWounds = math.max(DB.getValue(nodePC, "sp.wounds", 0), 0);
+				end
+
+				local nPercentWounded = 0;
+				if nHP > 0 then
+					nPercentWounded = nWounds / nHP;
+				end
+				
+				local sColor = ColorManager.getHealthColor(nPercentWounded, false);
+				return sColor;
+			end
+
+			function onSpiritChanged()
+				local sColor = getPCSheetSpiritColor(getDatabaseNode());
+				spwnd.setColor(sColor);
+			end
+		</script>
+		<sheetdata>
+			<number_sptotal name="sptotal" source="sp.total">
+				<anchored to="wounds" position="left" offset="15,0" width="40" />
+				<font>reference-b-large</font>
+				<description textres="char_tooltip_sptotal" />
+				<min value="0" />
+				<script>
+					function onValueChanged()
+						window.onSpiritChanged();
+					end
+				</script>
+			</number_sptotal>
+			<label_charfieldtop>
+				<anchored to="sptotal" offset="0,15" />
+				<static textres="char_label_sptotal" />
+			</label_charfieldtop>
+			<number_spwnd name="spwnd" source="sp.wounds">
+				<anchored to="sptotal" position="left" offset="15,0" width="40" />
+				<font>reference-b-large</font>
+				<description textres="char_tooltip_spwnd" />
+				<min value="0" />
+				<hideonvalue value="0" />
+				<script>
+					function onInit()
+						window.onSpiritChanged();
+					end
+
+					function onValueChanged()
+						window.onSpiritChanged();
+					end
+				</script>
+			</number_spwnd>
+			<label>
+				<anchored to="spwnd" position="lefthigh" offset="10,5" />
+				<static textres="hplabel" />
+			</label>
+			<label_charfieldtop>
+				<anchored to="spwnd" offset="0,15" />
+				<static textres="char_label_spwnd" />
+			</label_charfieldtop>
+
+		</sheetdata>
+	</windowclass>
+
+</root>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<root>
+    <windowclass name="combattracker_host" merge="join">
+        <sheetdata>
+			<label_ct name="label_init">
+				<anchored to="header_labels" position="insidetopright" offset="220,3" width="30" />
+				<static textres="init" />
+				<center />
+			</label_ct>
+            <label_ct name="label_sp">
+				<anchored to="header_labels" position="insidetopright" offset="175,3" width="30" />
+				<static textres="char_label_sptotal" />
+				<center />
+			</label_ct>
+            <label_ct name="label_spwnd">
+				<anchored to="header_labels" position="insidetopright" offset="135,3" width="30" />
+				<static textres="char_label_spwnd" />
+				<center />
+			</label_ct>
+        </sheetdata>
+    </windowclass>
+    <windowclass name="ct_entry" merge="join">
+		<script file="ct/scripts/ct_entry.lua" />
+        <sheetdata>
+			<number_ctentry_initresult name="initresult">
+					<anchored><right offset="-95" /></anchored>
+					<tabtarget next="sptotal" />
+			</number_ctentry_initresult>
+			<number_ct_crosslink name="hptotal">
+					<tabtarget prev="spwnd" next="hptemp" />
+			</number_ct_crosslink>
+            <number_ct_crosslink name="spwnd">
+				<anchored to="hptotal" width="30" height="20">
+					<top />
+					<right anchor="left" relation="relative" offset="-10" />
+				</anchored>
+				<hideonvalue value="0" />
+				<tabtarget prev="sptotal" next="hptotal" />
+				<script>
+					function handleDrop(draginfo)
+						if draginfo.getNumberData() &gt; 0 then
+							setValue(draginfo.getNumberData());
+						else
+							setValue(getValue() + draginfo.getNumberData());
+						end
+					end
+
+					function update()
+						window.onSpiritChanged();
+					end
+				</script>
+			</number_ct_crosslink>
+            <number_ct_crosslink name="sptotal">
+				<anchored to="spwnd" width="30" height="20">
+					<top />
+					<right anchor="left" relation="relative" offset="-10" />
+				</anchored>
+				<tabtarget prev="initresult" next="spwnd" />
+				<script>
+					function handleDrop(draginfo)
+						if draginfo.getNumberData() &gt; 0 then
+							setValue(draginfo.getNumberData());
+						else
+							setValue(getValue() + draginfo.getNumberData());
+						end
+					end
+
+					function update()
+						window.onSpiritChanged();
+					end
+				</script>
+			</number_ct_crosslink>
+        </sheetdata>
+    </windowclass>
+</root>

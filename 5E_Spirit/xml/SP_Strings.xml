@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<root>
+	<string name="hplabel">HP</string>
+	<string name="char_tooltip_sptotal">Spirit Points</string>
+	<string name="char_label_sptotal">SPR</string>
+	<string name="char_tooltip_spwnd">Spirit Drained</string>
+	<string name="char_label_spwnd">Dmg</string>
+</root>

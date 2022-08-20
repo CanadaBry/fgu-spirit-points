@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="npc_combat" merge="join">
+		<script file="campaign/scripts/npc_main.lua" />
+		<sheetdata>
+            <label_column name="sp_label" insertbefore="speed_label">
+                <static textres="char_tooltip_sptotal" />
+            </label_column>
+            <number_column name="sp" insertbefore="speed_label"/>
+        </sheetdata>
+	</windowclass>
+</root>

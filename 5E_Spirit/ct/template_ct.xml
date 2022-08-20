@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<root>
+    <template name="number_clientct_spwnd">
+		<number_ct_static name="spwnd">
+			<anchored to="hptotal" width="30" height="20">
+				<top />
+				<right anchor="left" offset="-10" />
+			</anchored>
+			<hideonvalue value="0" />
+			<min value="0" />
+			<script>
+				function onValueChanged()
+					window.onSpiritChanged();
+				end
+			</script>
+		</number_ct_static>
+	</template>
+    <template name="number_clientct_sptotal">
+		<number_ct_static name="sptotal">
+			<anchored to="spwnd" width="30" height="20">
+				<top />
+				<right anchor="left" offset="-10" />
+			</anchored>
+			<script>
+				function onValueChanged()
+					window.onSpiritChanged();
+				end
+			</script>
+		</number_ct_static>
+	</template>
+</root>
